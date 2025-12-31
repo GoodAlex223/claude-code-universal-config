@@ -33,7 +33,7 @@ Move to archive when ALL are true:
 - [ ] Tests passing
 - [ ] "Key Discoveries" filled in
 - [ ] "Future Improvements" has 2+ items
-- [ ] Summary added to `../DONE.md`
+- [ ] Summary added to `../planning/DONE.md`
 
 Then:
 ```bash

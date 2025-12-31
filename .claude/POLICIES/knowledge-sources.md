@@ -16,7 +16,7 @@
 1. CLAUDE.md           → Universal rules (this is mandatory for every task)
 2. PROJECT.md          → Project-specific context
 3. docs/README.md      → Documentation index (find relevant docs)
-4. docs/TODO.md        → Active tasks, check for related work
+4. docs/planning/TODO.md        → Active tasks, check for related work
 5. Domain-specific docs → As identified in the index
 6. Existing code       → Only after understanding context
 ```
@@ -182,7 +182,7 @@ Every document should have a "Last Updated" date. Documents need attention if:
 ```
 1. Read CLAUDE.md and PROJECT.md
 2. Read docs/README.md (documentation index)
-3. Read docs/TODO.md (find task, check context)
+3. Read docs/planning/TODO.md (find task, check context)
 4. Read docs/PROJECT_CONTEXT.md (understand patterns)
 5. Read domain-specific docs
 6. Check docs/plans/ for similar completed work
@@ -216,14 +216,20 @@ Every document should have a "Last Updated" date. Documents need attention if:
 
 ```
 project/
+├── README.md              # Project overview
 ├── CLAUDE.md              # Universal Claude Code rules
 ├── PROJECT.md             # Project-specific configuration
 └── docs/
     ├── README.md          # Documentation index
-    ├── TODO.md            # Active tasks
-    ├── DONE.md            # Completed tasks
     ├── PROJECT_CONTEXT.md # Decisions, patterns, history
     ├── ARCHITECTURE.md    # System design
+    ├── planning/          # Task management & strategy
+    │   ├── TODO.md        # Active tasks
+    │   ├── DONE.md        # Completed tasks
+    │   ├── BACKLOG.md     # Unprioritized ideas
+    │   ├── ROADMAP.md     # Long-term vision
+    │   ├── GOALS.md       # Objectives & metrics
+    │   └── MILESTONES.md  # Key targets
     ├── plans/             # Task implementation plans
     │   └── YYYY-MM-DD_task-name.md
     └── archive/           # Historical documents
@@ -254,7 +260,7 @@ Claude MUST verify:
 - [ ] CLAUDE.md exists and is readable
 - [ ] PROJECT.md exists and describes this project
 - [ ] docs/README.md exists
-- [ ] docs/TODO.md exists
+- [ ] docs/planning/TODO.md exists
 - [ ] Referenced documentation exists
 
 **If any validation fails**: STOP, report missing files, wait for user to create them.
@@ -280,8 +286,8 @@ Claude MUST check:
 | Universal rules | CLAUDE.md |
 | Project config | PROJECT.md |
 | Doc index | docs/README.md |
-| Active tasks | docs/TODO.md |
-| Completed tasks | docs/DONE.md |
+| Active tasks | docs/planning/TODO.md |
+| Completed tasks | docs/planning/DONE.md |
 | Project patterns | docs/PROJECT_CONTEXT.md |
 | Architecture | docs/ARCHITECTURE.md |
 | Implementation plans | docs/plans/*.md |

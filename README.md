@@ -69,7 +69,11 @@ cp .env.example .env
 ├── tests/                 # Test files
 ├── docs/                  # Documentation
 │   ├── README.md          # Documentation index
-│   ├── TODO.md            # Active tasks
+│   ├── planning/          # Task management & strategy
+│   │   ├── TODO.md        # Active tasks
+│   │   ├── DONE.md        # Completed tasks
+│   │   ├── ROADMAP.md     # Long-term vision
+│   │   └── ...
 │   └── ARCHITECTURE.md    # System design
 ├── CLAUDE.md              # Claude Code configuration
 ├── PROJECT.md             # Project-specific config
@@ -84,7 +88,8 @@ cp .env.example .env
 |----------|-------------|
 | [docs/README.md](docs/README.md) | Documentation index |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System architecture |
-| [docs/TODO.md](docs/TODO.md) | Current tasks |
+| [docs/planning/TODO.md](docs/planning/TODO.md) | Current tasks |
+| [docs/planning/ROADMAP.md](docs/planning/ROADMAP.md) | Project roadmap |
 | [CLAUDE.md](CLAUDE.md) | Claude Code rules |
 | [PROJECT.md](PROJECT.md) | Project configuration |
 
@@ -189,7 +194,7 @@ See [docs/deployment/](docs/deployment/) for deployment guides.
 
 ## Contributing
 
-1. Check [docs/TODO.md](docs/TODO.md) for open tasks
+1. Check [docs/planning/TODO.md](docs/planning/TODO.md) for open tasks
 2. Create a feature branch: `git checkout -b feature/your-feature`
 3. Make changes following the [code style](#code-style)
 4. Write tests for new functionality

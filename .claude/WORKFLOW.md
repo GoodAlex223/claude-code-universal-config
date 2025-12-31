@@ -58,7 +58,7 @@ Each phase has mandatory checkpoints that must be satisfied before proceeding.
 2. Fill in "Key Discoveries" section
 3. Fill in "Future Improvements" section (minimum 2 items)
 4. Move from `docs/plans/` to `docs/archive/plans/`
-5. Update `docs/DONE.md` with task summary
+5. Update `docs/planning/DONE.md` with task summary
 6. Delete `/root/.claude/plans/` copy (if exists)
 
 ### Directory Structure

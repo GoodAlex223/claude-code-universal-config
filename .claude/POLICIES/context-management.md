@@ -44,7 +44,7 @@ PRIORITY 2 (Read for Tasks)
 
 PRIORITY 3 (Read When Relevant)
 ├── .claude/POLICIES/      # Detailed policies
-├── docs/TODO.md           # Active tasks
+├── docs/planning/TODO.md           # Active tasks
 └── docs/PROJECT_CONTEXT.md # Patterns, decisions
 
 PRIORITY 4 (Reference Material)

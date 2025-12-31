@@ -12,7 +12,7 @@ Plans are moved here after ALL of the following are true:
 2. ✅ All tests passing
 3. ✅ "Key Discoveries" section filled in
 4. ✅ "Future Improvements" section has minimum 2 items
-5. ✅ Task summary added to `docs/DONE.md`
+5. ✅ Task summary added to `docs/planning/DONE.md`
 
 ---
 

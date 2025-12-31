@@ -67,7 +67,7 @@ Before archiving a plan, verify:
 - [ ] All steps marked complete
 - [ ] "Key Discoveries" section filled
 - [ ] "Future Improvements" has 2+ items
-- [ ] Summary added to docs/DONE.md
+- [ ] Summary added to docs/planning/DONE.md
 - [ ] /root/.claude/plans/ copy deleted
 
 ---

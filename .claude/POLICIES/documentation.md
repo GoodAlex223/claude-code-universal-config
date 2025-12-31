@@ -269,14 +269,20 @@ The documentation index MUST list all project documentation:
 
 **Last Updated**: YYYY-MM-DD
 
-## Core Documents
+## Planning & Tasks
+
+| Document | Purpose | Last Updated |
+|----------|---------|--------------|
+| [planning/TODO.md](planning/TODO.md) | Active tasks | YYYY-MM-DD |
+| [planning/DONE.md](planning/DONE.md) | Completed tasks | YYYY-MM-DD |
+| [planning/ROADMAP.md](planning/ROADMAP.md) | Long-term vision | YYYY-MM-DD |
+
+## Architecture
 
 | Document | Purpose | Last Updated |
 |----------|---------|--------------|
 | [ARCHITECTURE.md](ARCHITECTURE.md) | System design | YYYY-MM-DD |
 | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) | Decisions, patterns | YYYY-MM-DD |
-| [TODO.md](TODO.md) | Active tasks | YYYY-MM-DD |
-| [DONE.md](DONE.md) | Completed tasks | YYYY-MM-DD |
 
 ## Domain Documentation
 

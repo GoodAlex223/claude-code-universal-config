@@ -142,4 +142,4 @@ Accumulated knowledge, decisions, and patterns for this project.
 
 *Updated after each significant task completion.*
 *See [ARCHITECTURE.md](ARCHITECTURE.md) for system design.*
-*See [TODO.md](TODO.md) for active tasks.*
+*See [planning/TODO.md](planning/TODO.md) for active tasks.*

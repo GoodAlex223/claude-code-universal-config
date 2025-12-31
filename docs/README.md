@@ -10,8 +10,9 @@ Central index for all project documentation.
 
 | I need to... | Go to |
 |--------------|-------|
-| See what tasks are pending | [TODO.md](TODO.md) |
-| See what's been completed | [DONE.md](DONE.md) |
+| See what tasks are pending | [planning/TODO.md](planning/TODO.md) |
+| See what's been completed | [planning/DONE.md](planning/DONE.md) |
+| See the roadmap | [planning/ROADMAP.md](planning/ROADMAP.md) |
 | See active implementation plans | [plans/README.md](plans/README.md) |
 | Understand the architecture | [ARCHITECTURE.md](ARCHITECTURE.md) |
 | Find project patterns/decisions | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) |
@@ -22,12 +23,17 @@ Central index for all project documentation.
 
 ## Core Documentation
 
-### Task Management
+### Planning & Tasks
 
 | Document | Purpose | Last Updated |
 |----------|---------|--------------|
-| [TODO.md](TODO.md) | Active tasks and backlog | YYYY-MM-DD |
-| [DONE.md](DONE.md) | Completed tasks with learnings | YYYY-MM-DD |
+| [planning/README.md](planning/README.md) | Planning overview | YYYY-MM-DD |
+| [planning/TODO.md](planning/TODO.md) | Active tasks | YYYY-MM-DD |
+| [planning/DONE.md](planning/DONE.md) | Completed tasks | YYYY-MM-DD |
+| [planning/BACKLOG.md](planning/BACKLOG.md) | Unprioritized ideas | YYYY-MM-DD |
+| [planning/ROADMAP.md](planning/ROADMAP.md) | Long-term vision | YYYY-MM-DD |
+| [planning/GOALS.md](planning/GOALS.md) | Objectives & metrics | YYYY-MM-DD |
+| [planning/MILESTONES.md](planning/MILESTONES.md) | Key targets | YYYY-MM-DD |
 
 ### Architecture & Design
 
@@ -129,10 +135,16 @@ When documentation is no longer actively needed:
 ```
 docs/
 ├── README.md              # This file - documentation index
-├── TODO.md                # Active tasks
-├── DONE.md                # Completed tasks
 ├── ARCHITECTURE.md        # System design
 ├── PROJECT_CONTEXT.md     # Patterns, decisions
+├── planning/              # Task management & strategy
+│   ├── README.md          # Planning guide
+│   ├── TODO.md            # Active tasks
+│   ├── DONE.md            # Completed tasks
+│   ├── BACKLOG.md         # Unprioritized ideas
+│   ├── ROADMAP.md         # Long-term vision
+│   ├── GOALS.md           # Objectives & metrics
+│   └── MILESTONES.md      # Key targets
 ├── plans/                 # Implementation plans
 │   ├── README.md          # Plans guide
 │   └── YYYY-MM-DD_task.md

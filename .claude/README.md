@@ -166,10 +166,15 @@ project/
 ├── PROJECT.md             # Project-specific configuration
 ├── docs/                  # Documentation (standard location)
 │   ├── README.md
-│   ├── TODO.md
-│   ├── DONE.md
 │   ├── ARCHITECTURE.md
 │   ├── PROJECT_CONTEXT.md
+│   ├── planning/          # Task management & strategy
+│   │   ├── TODO.md
+│   │   ├── DONE.md
+│   │   ├── BACKLOG.md
+│   │   ├── ROADMAP.md
+│   │   ├── GOALS.md
+│   │   └── MILESTONES.md
 │   ├── plans/
 │   └── archive/
 └── .claude/               # This directory (config & policies)

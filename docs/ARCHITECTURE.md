@@ -230,4 +230,4 @@ System design and technical architecture.
 ---
 
 *See [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) for decisions and patterns.*
-*See [TODO.md](TODO.md) for planned architectural changes.*
+*See [planning/TODO.md](planning/TODO.md) for planned architectural changes.*
