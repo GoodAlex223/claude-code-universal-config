@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Universal configuration for Claude Code. Project-specific details are in [PROJECT.md](PROJECT.md).
+Universal configuration for Claude Code. Project-specific details are in [PROJECT.md](../PROJECT.md).
 
 ---
 
@@ -18,7 +18,7 @@ Universal configuration for Claude Code. Project-specific details are in [PROJEC
 
 **NEVER start coding immediately. Follow the Thinking Protocol.**
 
-See: [.claude/POLICIES/critical-thinking.md](.claude/POLICIES/critical-thinking.md)
+See: [POLICIES/critical-thinking.md](POLICIES/critical-thinking.md)
 
 ### 3. Plan-Execute-Verify Cycle
 
@@ -28,7 +28,7 @@ Every task follows this cycle:
 PLAN → EXECUTE → VERIFY → DOCUMENT → COMPLETE
 ```
 
-See: [.claude/WORKFLOW.md](.claude/WORKFLOW.md)
+See: [WORKFLOW.md](WORKFLOW.md)
 
 ### 4. Validate Before Proceeding
 
@@ -281,7 +281,7 @@ If user insists on their approach despite concerns:
 
 **Before planning any significant task, Claude MUST consult project documentation.**
 
-See: [.claude/POLICIES/knowledge-sources.md](.claude/POLICIES/knowledge-sources.md)
+See: [POLICIES/knowledge-sources.md](POLICIES/knowledge-sources.md)
 
 ### Task Sequence (Always Follow This Order)
 
@@ -366,32 +366,32 @@ If you must prioritize, follow this order:
 
 | Document | Purpose |
 |----------|---------|
-| [PROJECT.md](PROJECT.md) | Project-specific information |
-| [.claude/WORKFLOW.md](.claude/WORKFLOW.md) | Development workflow, TDD, CI/CD |
-| [.claude/POLICIES/critical-thinking.md](.claude/POLICIES/critical-thinking.md) | Deep analysis requirements |
-| [.claude/POLICIES/testing.md](.claude/POLICIES/testing.md) | Testing standards, coverage |
-| [.claude/POLICIES/documentation.md](.claude/POLICIES/documentation.md) | Documentation requirements |
-| [.claude/POLICIES/knowledge-sources.md](.claude/POLICIES/knowledge-sources.md) | Knowledge sources and maintenance |
+| [PROJECT.md](../PROJECT.md) | Project-specific information |
+| [WORKFLOW.md](WORKFLOW.md) | Development workflow, TDD, CI/CD |
+| [POLICIES/critical-thinking.md](POLICIES/critical-thinking.md) | Deep analysis requirements |
+| [POLICIES/testing.md](POLICIES/testing.md) | Testing standards, coverage |
+| [POLICIES/documentation.md](POLICIES/documentation.md) | Documentation requirements |
+| [POLICIES/knowledge-sources.md](POLICIES/knowledge-sources.md) | Knowledge sources and maintenance |
 
 ### Extended Policies
 
 | Document | Purpose |
 |----------|---------|
-| [.claude/POLICIES/context-management.md](.claude/POLICIES/context-management.md) | Managing instruction size |
-| [.claude/POLICIES/code-review.md](.claude/POLICIES/code-review.md) | Code review process |
-| [.claude/POLICIES/security.md](.claude/POLICIES/security.md) | Security standards |
-| [.claude/POLICIES/git.md](.claude/POLICIES/git.md) | Git workflow, branching |
-| [.claude/POLICIES/error-handling.md](.claude/POLICIES/error-handling.md) | Error handling patterns |
-| [.claude/POLICIES/versioning.md](.claude/POLICIES/versioning.md) | Version numbering, releases |
-| [.claude/POLICIES/performance.md](.claude/POLICIES/performance.md) | Performance guidelines |
+| [POLICIES/context-management.md](POLICIES/context-management.md) | Managing instruction size |
+| [POLICIES/code-review.md](POLICIES/code-review.md) | Code review process |
+| [POLICIES/security.md](POLICIES/security.md) | Security standards |
+| [POLICIES/git.md](POLICIES/git.md) | Git workflow, branching |
+| [POLICIES/error-handling.md](POLICIES/error-handling.md) | Error handling patterns |
+| [POLICIES/versioning.md](POLICIES/versioning.md) | Version numbering, releases |
+| [POLICIES/performance.md](POLICIES/performance.md) | Performance guidelines |
 
 ### Language & Templates
 
 | Document | Purpose |
 |----------|---------|
-| [.claude/LANGUAGES/](.claude/LANGUAGES/) | Language-specific standards |
-| [.claude/TEMPLATES/](.claude/TEMPLATES/) | Reusable templates |
-| [.claude/mcp-config.md](.claude/mcp-config.md) | MCP server configuration |
+| [LANGUAGES/](LANGUAGES/) | Language-specific standards |
+| [TEMPLATES/](TEMPLATES/) | Reusable templates |
+| [mcp-config.md](mcp-config.md) | MCP server configuration |
 
 ---
 
@@ -414,9 +414,9 @@ Every project MUST have language-specific policies for its primary languages. If
 
 | Language | Policy | Status |
 |----------|--------|--------|
-| Python | [.claude/LANGUAGES/python.md](.claude/LANGUAGES/python.md) | Available |
-| TypeScript/JS | [.claude/LANGUAGES/typescript.md](.claude/LANGUAGES/typescript.md) | Available |
-| Other | [.claude/LANGUAGES/_template.md](.claude/LANGUAGES/_template.md) | Template |
+| Python | [LANGUAGES/python.md](LANGUAGES/python.md) | Available |
+| TypeScript/JS | [LANGUAGES/typescript.md](LANGUAGES/typescript.md) | Available |
+| Other | [LANGUAGES/_template.md](LANGUAGES/_template.md) | Template |
 
 ### Creating Missing Language Policy
 
@@ -476,5 +476,5 @@ Create language policy when:
 
 ---
 
-*For project-specific details, see [PROJECT.md](PROJECT.md).*
+*For project-specific details, see [PROJECT.md](../PROJECT.md).*
 *For detailed policies, see linked documents in `.claude/` directory.*

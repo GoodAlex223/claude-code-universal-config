@@ -1,0 +1,76 @@
+{
+  "name": "Dev Container with Claude Code",
+
+  // Base image - customize as needed
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  // ============================================
+  // CLAUDE CODE PERSISTENCE
+  // Mount host Claude config to preserve across rebuilds
+  // ============================================
+  "mounts": [
+    // Claude settings, history, credentials, CLAUDE.md
+    "source=${localEnv:USERPROFILE}/.claude,target=/home/vscode/.claude,type=bind",
+    // Claude global state (OAuth, MCP servers, permissions)
+    "source=${localEnv:USERPROFILE}/.claude.json,target=/home/vscode/.claude.json,type=bind"
+  ],
+
+  // ============================================
+  // VSCODE EXTENSIONS
+  // ============================================
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        // Add your VS Code settings here
+      }
+    }
+  },
+
+  // ============================================
+  // ENVIRONMENT VARIABLES
+  // ============================================
+  "remoteEnv": {
+    // Uncomment to use custom Claude config location instead of mounts
+    // "CLAUDE_CONFIG_DIR": "/workspace/.claude-config",
+
+    // Uncomment to set persistent environment for Claude Bash commands
+    // "CLAUDE_ENV_FILE": "/home/vscode/.claude/env-setup.sh"
+  },
+
+  // ============================================
+  // FEATURES (optional dev tools)
+  // ============================================
+  "features": {
+    // Git
+    "ghcr.io/devcontainers/features/git:1": {},
+    // GitHub CLI
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+
+    // Uncomment as needed:
+    // "ghcr.io/devcontainers/features/node:1": {},
+    // "ghcr.io/devcontainers/features/python:1": {},
+    // "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  // ============================================
+  // LIFECYCLE COMMANDS
+  // ============================================
+
+  // Run after container is created (first time only)
+  "postCreateCommand": "echo 'Container created. Claude config mounted from host.'",
+
+  // Run every time container starts
+  // "postStartCommand": "",
+
+  // Run after VS Code attaches to container
+  // "postAttachCommand": "",
+
+  // ============================================
+  // CONTAINER USER
+  // Change if using different base image
+  // ============================================
+  "remoteUser": "vscode"
+}

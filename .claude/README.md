@@ -12,6 +12,17 @@ Configuration files for Claude Code. These files define universal development ru
 ├── settings.local.json    # Permissions and hooks
 ├── WORKFLOW.md            # Development workflow
 ├── mcp-config.md          # MCP server configuration guide
+├── skills/                # Claude Code skills (auto-discovered)
+│   ├── critical-thinking/SKILL.md
+│   ├── development-workflow/SKILL.md
+│   ├── task-planning/SKILL.md
+│   ├── git-workflow/SKILL.md
+│   ├── code-review/SKILL.md
+│   ├── testing-standards/SKILL.md
+│   ├── security-standards/SKILL.md
+│   ├── python-standards/SKILL.md
+│   ├── typescript-standards/SKILL.md
+│   └── documentation-templates/SKILL.md
 ├── POLICIES/              # Detailed policies
 │   ├── critical-thinking.md
 │   ├── documentation.md
@@ -39,6 +50,39 @@ Configuration files for Claude Code. These files define universal development ru
     ├── incident-report.md
     └── release-notes.md
 ```
+
+---
+
+## Skills
+
+Claude Code skills are auto-discovered capabilities that Claude applies based on context. Each skill has a `SKILL.md` file with YAML frontmatter defining when it should be used.
+
+### Available Skills
+
+| Skill | Description | Auto-Triggers |
+|-------|-------------|---------------|
+| critical-thinking | EXPLORE-CHALLENGE-SYNTHESIZE analysis | Complex problems, architecture decisions |
+| development-workflow | Plan-Execute-Verify-Document cycle | Feature implementation, bug fixes |
+| task-planning | Structured task planning templates | Starting significant tasks |
+| git-workflow | Branch strategy, conventional commits | Making commits, creating PRs |
+| code-review | Self-review and PR review standards | Reviewing code |
+| testing-standards | TDD workflow, coverage requirements | Writing tests |
+| security-standards | Security validation, secrets management | Security-sensitive code |
+| python-standards | Python conventions, type hints | Writing Python code |
+| typescript-standards | TypeScript patterns, type safety | Writing TypeScript code |
+| documentation-templates | ADR, PR, bug report templates | Creating documentation |
+
+### How Skills Work
+
+1. **Discovery**: Claude loads skill names and descriptions at startup
+2. **Activation**: When your request matches a skill's description, Claude may apply it
+3. **Execution**: Full skill content loads into context when activated
+
+### Manual Invocation
+
+You can also invoke skills explicitly:
+- "Use the critical-thinking skill for this analysis"
+- "Apply git-workflow standards for this commit"
 
 ---
 
@@ -178,6 +222,7 @@ project/
 │   ├── plans/
 │   └── archive/
 └── .claude/               # This directory (config & policies)
+    ├── skills/            # Claude Code skills
     ├── POLICIES/
     ├── LANGUAGES/
     └── TEMPLATES/

@@ -1,0 +1,92 @@
+{
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -qE '(auth|payment|security|\\.env|credentials)'; then echo '[WARN] Modifying critical system file. Ensure user approval per CLAUDE.md Tier 1 rules.' && exit 2; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -qE '(rm -rf|git push --force|DROP TABLE|DELETE FROM)'; then echo '[BLOCKED] Dangerous command detected' && exit 2; fi"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "(?i)(implement|create|add|build|refactor|fix|update|change|modify|write|develop|design)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[CLAUDE] Before planning: Read CLAUDE.md → PROJECT.md → docs/README.md → docs/TODO.md. See CLAUDE.md#knowledge-sources for full protocol.'",
+            "statusMessage": "Checking documentation requirements..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -q 'docs/'; then echo '[CLAUDE] Documentation modified. Remember: update Last Updated date, index new docs in docs/README.md.'; fi"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[CLAUDE] Session started. Core docs: CLAUDE.md | PROJECT.md | docs/README.md | docs/TODO.md'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[CLAUDE] Task complete. Remember: Log results in plan file, document improvements, update TODO.md if needed.'"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "auto|manual",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[CLAUDE] Context compacting. Key context: Current plan file, TODO.md state, recent decisions.'"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[CLAUDE] Session ending. Ensure: plan files updated, TODO.md current, no uncommitted critical changes.'"
+          }
+        ]
+      }
+    ]
+  }
+}
