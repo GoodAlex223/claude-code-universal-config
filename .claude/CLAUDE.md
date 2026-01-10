@@ -37,7 +37,7 @@ See: [WORKFLOW.md](WORKFLOW.md)
 Before starting any task:
 1. Verify PROJECT.md exists and is readable
 2. Verify required documentation structure exists (see Knowledge Sources)
-3. If files are missing → Report what's missing → Wait for user to create them
+3. If files are missing → Report what's missing → Offer to create from templates (see Template Files section)
 
 ---
 
@@ -313,6 +313,31 @@ Every project MUST have these files (create if missing):
 | docs/ARCHITECTURE.md | System design | docs/ |
 | docs/plans/ | Task plans | docs/plans/ |
 | docs/archive/ | Historical docs | docs/archive/ |
+
+### Template Files
+
+**When required documentation is missing, use these templates to create them.**
+
+Templates are located in `.claude/TEMPLATES/` directory:
+
+| Missing File/Directory | Template Source | Action |
+|------------------------|-----------------|--------|
+| PROJECT.md | [TEMPLATES/PROJECT_template.md](TEMPLATES/PROJECT_template.md) | Copy to project root, fill in placeholders |
+| README.md | [TEMPLATES/README_template.md](TEMPLATES/README_template.md) | Copy to project root, customize for project |
+| docs/ structure | [TEMPLATES/docs_template/](TEMPLATES/docs_template/) | Copy entire directory, rename to `docs/` |
+| .devcontainer/ | [TEMPLATES/.devcontainer_template/](TEMPLATES/.devcontainer_template/) | Copy entire directory, rename to `.devcontainer/` |
+| .mcp.json | [TEMPLATES/.mcp.json.example](TEMPLATES/.mcp.json.example) | Copy to project root as `.mcp.json`, configure MCP servers |
+
+**Template Usage Protocol:**
+
+1. **If PROJECT.md is missing** → Ask user: "PROJECT.md is missing. Would you like me to create it from the template?"
+2. **If docs/ structure is missing or incomplete** → Ask user: "Documentation structure is incomplete. Would you like me to create it from templates?"
+3. **If .devcontainer/ is missing** (for container-based development) → Ask user: "Would you like me to set up a devcontainer configuration from the template?"
+4. **If .mcp.json is missing** (for MCP server integration) → Ask user: "Would you like me to create an MCP configuration from the template?"
+5. **After copying template** → Replace all `YYYY-MM-DD` placeholders with current date
+6. **After copying template** → Replace all `[placeholder]` values with project-specific information
+
+**Important**: Always ask user before creating files from templates. Never auto-create without confirmation.
 
 ### Document Maintenance Rules
 
