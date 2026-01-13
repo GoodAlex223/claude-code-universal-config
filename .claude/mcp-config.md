@@ -59,6 +59,54 @@ MCP configuration is stored in `.mcp.json` at the project root.
 
 ---
 
+### Memory (Knowledge Graph)
+
+```json
+{
+  "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "~/.claude/memory.jsonl"
+      }
+    }
+  }
+}
+```
+
+**Setup**:
+1. Ensure `~/.claude/` directory exists
+2. Add configuration to `.mcp.json`
+3. Memory file is created automatically on first use
+
+**Cross-Platform Paths**:
+- Unix/macOS: `~/.claude/memory.jsonl`
+- Windows: `C:\\Users\\username\\.claude\\memory.jsonl`
+
+**Available Tools**:
+
+| Tool | Purpose |
+|------|---------|
+| `create_entities` | Add knowledge nodes |
+| `create_relations` | Link entities together |
+| `add_observations` | Add facts to existing entities |
+| `delete_entities` | Remove nodes |
+| `delete_observations` | Remove facts |
+| `delete_relations` | Remove links |
+| `read_graph` | Full knowledge audit |
+| `search_nodes` | Query by content |
+| `open_nodes` | Fetch specific entities |
+
+**Usage Pattern**:
+
+See [POLICIES/memory.md](POLICIES/memory.md) for:
+- Entity naming conventions
+- Session protocols
+- Memory hygiene rules
+
+---
+
 ### Filesystem Access
 
 ```json
@@ -328,6 +376,13 @@ if __name__ == "__main__":
 ```json
 {
   "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "~/.claude/memory.jsonl"
+      }
+    },
     "brave-search": {
       "command": "npx",
       "args": ["-y", "@anthropic/mcp-brave-search"],
@@ -376,6 +431,9 @@ if __name__ == "__main__":
 ```bash
 # MCP Server Configuration
 # Copy to .env and fill in values
+
+# Memory Server (optional - uses default if not set)
+# MEMORY_FILE_PATH=~/.claude/memory.jsonl
 
 # Brave Search API
 BRAVE_API_KEY=

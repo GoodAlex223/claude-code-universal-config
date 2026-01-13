@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[CLAUDE] Before planning: Read CLAUDE.md → PROJECT.md → docs/README.md → docs/TODO.md. See CLAUDE.md#knowledge-sources for full protocol.'",
+            "command": "echo '[CLAUDE] Before planning: 1) RETRIEVE MEMORY (project context, preferences, patterns) 2) Read CLAUDE.md → PROJECT.md → docs/README.md. See POLICIES/memory.md for retrieval protocol.'",
             "statusMessage": "Checking documentation requirements..."
           }
         ]
@@ -52,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[CLAUDE] Session started. Core docs: CLAUDE.md | PROJECT.md | docs/README.md | docs/TODO.md'"
+            "command": "echo '[CLAUDE] Session started. FIRST: Retrieve memory context (search_nodes for project, preferences, patterns). THEN: Read CLAUDE.md | PROJECT.md | docs/README.md | docs/TODO.md'"
           }
         ]
       }
@@ -62,7 +62,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[CLAUDE] Task complete. Remember: Log results in plan file, document improvements, update TODO.md if needed.'"
+            "command": "echo '[CLAUDE] Task complete. Remember: 1) Update memory with learnings (decisions, patterns, preferences) 2) Log results in plan file 3) Update TODO.md if needed.'"
           }
         ]
       }
@@ -73,7 +73,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[CLAUDE] Context compacting. Key context: Current plan file, TODO.md state, recent decisions.'"
+            "command": "echo '[CLAUDE] Context compacting. Key context: Memory state, current plan file, TODO.md state, recent decisions.'"
           }
         ]
       }
@@ -83,7 +83,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[CLAUDE] Session ending. Ensure: plan files updated, TODO.md current, no uncommitted critical changes.'"
+            "command": "echo '[CLAUDE] Session ending. Ensure: 1) Memory updated with session learnings 2) Plan files updated 3) TODO.md current 4) No uncommitted critical changes.'"
           }
         ]
       }

@@ -12,6 +12,7 @@ Configuration files for Claude Code. These files define universal development ru
 ├── settings.local.json    # Permissions and hooks
 ├── WORKFLOW.md            # Development workflow
 ├── mcp-config.md          # MCP server configuration guide
+├── memory.jsonl           # Persistent knowledge graph storage (auto-created)
 ├── skills/                # Claude Code skills (auto-discovered)
 │   ├── critical-thinking/SKILL.md
 │   ├── development-workflow/SKILL.md
@@ -22,7 +23,8 @@ Configuration files for Claude Code. These files define universal development ru
 │   ├── security-standards/SKILL.md
 │   ├── python-standards/SKILL.md
 │   ├── typescript-standards/SKILL.md
-│   └── documentation-templates/SKILL.md
+│   ├── documentation-templates/SKILL.md
+│   └── memory-management/SKILL.md
 ├── POLICIES/              # Detailed policies
 │   ├── critical-thinking.md
 │   ├── documentation.md
@@ -34,7 +36,8 @@ Configuration files for Claude Code. These files define universal development ru
 │   ├── git.md
 │   ├── error-handling.md
 │   ├── versioning.md
-│   └── performance.md
+│   ├── performance.md
+│   └── memory.md
 ├── LANGUAGES/             # Language-specific standards
 │   ├── README.md
 │   ├── python.md
@@ -61,6 +64,7 @@ Claude Code skills are auto-discovered capabilities that Claude applies based on
 
 | Skill | Description | Auto-Triggers |
 |-------|-------------|---------------|
+| memory-management | Persistent knowledge graph retrieval and updates | Session start, decisions, learnings |
 | critical-thinking | EXPLORE-CHALLENGE-SYNTHESIZE analysis | Complex problems, architecture decisions |
 | development-workflow | Plan-Execute-Verify-Document cycle | Feature implementation, bug fixes |
 | task-planning | Structured task planning templates | Starting significant tasks |
@@ -100,6 +104,7 @@ You can also invoke skills explicitly:
 
 | File | Purpose |
 |------|---------|
+| POLICIES/memory.md | Persistent memory, knowledge graph, session protocols |
 | POLICIES/critical-thinking.md | Analysis requirements, questioning user assertions |
 | POLICIES/documentation.md | Documentation standards, improvement tracking |
 | POLICIES/testing.md | TDD workflow, coverage requirements |
@@ -147,10 +152,11 @@ Root/
 
 ### Reading Order
 
-1. **CLAUDE.md** - Core universal rules
-2. **PROJECT.md** - Project-specific configuration
-3. **.claude/WORKFLOW.md** - Development workflow (when doing tasks)
-4. **.claude/POLICIES/** - Detailed policies (as needed)
+1. **Memory Retrieval** - Query knowledge graph first (project, preferences, patterns)
+2. **CLAUDE.md** - Core universal rules
+3. **PROJECT.md** - Project-specific configuration
+4. **.claude/WORKFLOW.md** - Development workflow (when doing tasks)
+5. **.claude/POLICIES/** - Detailed policies (as needed)
 
 ---
 

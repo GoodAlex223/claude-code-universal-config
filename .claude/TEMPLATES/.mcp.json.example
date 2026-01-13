@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "~/.claude/memory.jsonl"
+      }
+    },
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_CONTEXT7_API_KEY"]

@@ -25,7 +25,7 @@ See: [POLICIES/critical-thinking.md](POLICIES/critical-thinking.md)
 Every task follows this cycle:
 
 ```
-PLAN → EXECUTE → VERIFY → DOCUMENT → COMPLETE
+REMEMBER → PLAN → EXECUTE → VERIFY → DOCUMENT → COMPLETE
 ```
 
 See: [WORKFLOW.md](WORKFLOW.md)
@@ -143,6 +143,39 @@ Before finalizing, ask yourself:
 7. Ambiguity that could lead to wrong implementation
 8. **Referenced files/documentation do not exist**
 9. **Documentation contradicts actual code state**
+
+---
+
+## Memory Integration
+
+### Session Start (MANDATORY)
+
+**Before any task work, retrieve memory:**
+
+1. Search for project context: `search_nodes("project:[project-name]")`
+2. Load user preferences: `search_nodes("user:preference")`
+3. Load relevant patterns: `search_nodes("global:pattern")`
+4. Synthesize context before proceeding
+
+### Memory Updates (Create/Add)
+
+| Event | Action |
+|-------|--------|
+| Significant decision made | Create Decision entity |
+| New pattern discovered | Create Pattern entity |
+| User corrects behavior | Update Preference entity |
+| Task completed | Document learnings |
+
+### Memory Maintenance (Update/Delete)
+
+| Event | Action |
+|-------|--------|
+| Found stale memory during retrieval | Update or delete immediately |
+| File/code was deleted | `delete_entities()` for related File entities |
+| Decision was reversed | Add `DEPRECATED:` prefix or delete |
+| Observation proven wrong | `delete_observations()` |
+
+See: [POLICIES/memory.md](POLICIES/memory.md) for full policy.
 
 ---
 
@@ -286,6 +319,7 @@ See: [POLICIES/knowledge-sources.md](POLICIES/knowledge-sources.md)
 ### Task Sequence (Always Follow This Order)
 
 ```
+0. RETRIEVE MEMORY — Project context, user preferences, patterns
 1. Read CLAUDE.md (this file) — Universal rules
 2. Read PROJECT.md — Project-specific context
 3. Read README.md — Project overview (if unfamiliar)
@@ -397,6 +431,7 @@ If you must prioritize, follow this order:
 | [POLICIES/testing.md](POLICIES/testing.md) | Testing standards, coverage |
 | [POLICIES/documentation.md](POLICIES/documentation.md) | Documentation requirements |
 | [POLICIES/knowledge-sources.md](POLICIES/knowledge-sources.md) | Knowledge sources and maintenance |
+| [POLICIES/memory.md](POLICIES/memory.md) | Persistent memory, knowledge graph |
 
 ### Extended Policies
 
@@ -472,6 +507,7 @@ Create language policy when:
 
 ### Before Starting Any Task
 
+0. ✅ **Retrieve memory context** (project, preferences, patterns)
 1. ✅ Read and understand the requirement
 2. ✅ Verify PROJECT.md exists
 3. ✅ Check docs/README.md for relevant documentation

@@ -9,7 +9,7 @@ Universal development workflow. Project-specific commands are in [PROJECT.md](..
 Every task follows this cycle:
 
 ```
-PLAN → EXECUTE → VERIFY → DOCUMENT → COMPLETE
+REMEMBER → PLAN → EXECUTE → VERIFY → DOCUMENT → COMPLETE
 ```
 
 Each phase has mandatory checkpoints that must be satisfied before proceeding.
@@ -129,6 +129,65 @@ After completing each phase, provide:
 
 ---
 
+## Phase 0: REMEMBER
+
+### 0.1 Memory Retrieval (MANDATORY)
+
+**Before starting ANY task, retrieve relevant memory:**
+
+```
+search_nodes("project:[project-name]")  → Project context
+search_nodes("user:preference")         → User preferences
+search_nodes("global:pattern")          → Reusable patterns
+```
+
+### 0.2 Context Synthesis
+
+After retrieval, synthesize:
+
+```markdown
+**Memory Context:**
+- Project: [name] - [key facts]
+- Relevant decisions: [list]
+- User preferences: [list]
+- Applicable patterns: [list]
+```
+
+### 0.3 Memory Validation
+
+**Check retrieved memory for staleness:**
+
+| Check | Action if Found |
+|-------|-----------------|
+| Entity references deleted file/code | `delete_entities()` or `delete_observations()` |
+| Observation marked `DEPRECATED:` | Consider deletion or update |
+| Decision no longer applies | Add `DEPRECATED:` prefix or delete |
+| Preference contradicts current request | Clarify with user, then update |
+
+**Update stale information immediately:**
+```
+# Remove outdated observation
+delete_observations({
+  "entityName": "project:my-app:decision:old-choice",
+  "observations": ["Outdated fact to remove"]
+})
+
+# Or delete entire entity if obsolete
+delete_entities(["project:my-app:file:deleted-file"])
+```
+
+### 0.4 Memory-Informed Planning
+
+Use retrieved context to:
+- Avoid repeating past mistakes (check decisions)
+- Apply established patterns (check patterns)
+- Honor user preferences (check preferences)
+- Understand project architecture (check architecture entities)
+
+See: [POLICIES/memory.md](POLICIES/memory.md) for full memory policy.
+
+---
+
 ## Phase 1: PLAN
 
 ### 1.1 Create Plan Document
@@ -244,7 +303,19 @@ Update plan document during execution:
 - [ ] No obvious bugs?
 - [ ] Types correct?
 
-### 2.4 Stuck Protocol
+### 2.4 Memory Checkpoints
+
+**When making significant decisions:**
+- [ ] Document decision in memory (create Decision entity)
+- [ ] Link to related entities (create relations)
+- [ ] Record rationale in observations
+
+**When discovering patterns:**
+- [ ] Check if pattern exists in memory
+- [ ] If new, create Pattern entity
+- [ ] If exists, add observation
+
+### 2.5 Stuck Protocol
 
 If stuck after 3 attempts:
 
@@ -443,6 +514,44 @@ For non-obvious code:
 if edge_case:
     special_handling()
 ```
+
+### 4.5 Memory Persistence
+
+**Before marking complete, update persistent memory:**
+
+#### Create New Entities
+
+| Discovery | Memory Action |
+|-----------|---------------|
+| Architecture decision | Create Decision entity |
+| New reusable pattern | Create Pattern entity |
+| User preference learned | Create/update Preference entity |
+| Important file created | Create File entity |
+
+#### Update Existing Entities
+
+| Change | Memory Action |
+|--------|---------------|
+| New fact about existing entity | `add_observations()` |
+| Entity behavior changed | Add timestamped observation |
+| Pattern applied successfully | Add "Applied in: [project]" observation |
+
+#### Delete Outdated Information
+
+| Trigger | Memory Action |
+|---------|---------------|
+| File/code was deleted | `delete_entities()` for File entities |
+| Decision was reversed | Add `DEPRECATED:` prefix or delete |
+| Observation proven wrong | `delete_observations()` |
+| Relation no longer valid | `delete_relations()` |
+
+**Memory update checklist:**
+- [ ] New decisions documented in memory?
+- [ ] New patterns captured in memory?
+- [ ] User preferences updated?
+- [ ] Relations created between entities?
+- [ ] **Outdated observations removed?**
+- [ ] **Obsolete entities deleted?**
 
 ---
 
