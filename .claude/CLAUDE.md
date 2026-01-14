@@ -345,6 +345,7 @@ Every project MUST have these files (create if missing):
 | docs/planning/ROADMAP.md | Long-term vision | docs/planning/ |
 | docs/PROJECT_CONTEXT.md | Decisions, patterns | docs/ |
 | docs/ARCHITECTURE.md | System design | docs/ |
+| docs/MANUAL_TESTING.md | Manual testing scenarios | docs/ |
 | docs/plans/ | Task plans | docs/plans/ |
 | docs/archive/ | Historical docs | docs/archive/ |
 
@@ -429,6 +430,7 @@ If you must prioritize, follow this order:
 | [WORKFLOW.md](WORKFLOW.md) | Development workflow, TDD, CI/CD |
 | [POLICIES/critical-thinking.md](POLICIES/critical-thinking.md) | Deep analysis requirements |
 | [POLICIES/testing.md](POLICIES/testing.md) | Testing standards, coverage |
+| [POLICIES/manual-testing.md](POLICIES/manual-testing.md) | Manual testing scenarios (MANDATORY phase) |
 | [POLICIES/documentation.md](POLICIES/documentation.md) | Documentation requirements |
 | [POLICIES/knowledge-sources.md](POLICIES/knowledge-sources.md) | Knowledge sources and maintenance |
 | [POLICIES/memory.md](POLICIES/memory.md) | Persistent memory, knowledge graph |
@@ -528,12 +530,17 @@ Create language policy when:
 
 1. ✅ All tests passing
 2. ✅ Pre-commit hooks passing
-3. ✅ Manual testing checklist created
-4. ✅ Wait for user approval before push
-5. ✅ **Document improvements** (minimum 2 per task)
-6. ✅ **Add actionable improvements to TODO.md**
-7. ✅ Update all documentation
-8. ✅ Move task from TODO.md to DONE.md
+3. ✅ **Manual testing scenarios phase complete** (see POLICIES/manual-testing.md)
+   - Review existing scenarios in `docs/MANUAL_TESTING.md`
+   - Delete/modify contradicting scenarios
+   - Add new scenarios for changes
+   - Create automated tests for scenarios
+4. ✅ Manual testing checklist created
+5. ✅ Wait for user approval before push
+6. ✅ **Document improvements** (minimum 2 per task)
+7. ✅ **Add actionable improvements to TODO.md**
+8. ✅ Update all documentation
+9. ✅ Move task from TODO.md to DONE.md
 
 ---
 

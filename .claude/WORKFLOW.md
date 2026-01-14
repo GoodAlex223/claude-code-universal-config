@@ -338,7 +338,61 @@ Before any commit, run the project's verification commands (defined in PROJECT.m
 
 **All must pass before proceeding.**
 
-### 3.2 Manual Testing Gate
+### 3.2 Manual Testing Scenarios Phase (MANDATORY)
+
+**After code implementation, create/update manual testing scenarios.**
+
+See: [POLICIES/manual-testing.md](POLICIES/manual-testing.md) for full policy.
+
+#### Workflow
+
+```
+1. Review existing scenarios in docs/MANUAL_TESTING.md
+2. Delete/modify scenarios that contradict changes
+3. Add new scenarios that verify changes work correctly
+4. Create automated tests that simulate the scenarios
+```
+
+#### When to Create Scenarios
+
+| Code Change Type | Required Action |
+|------------------|-----------------|
+| Bug fix | Add reproduction script + verification scenario |
+| New feature | Add user flow scenarios |
+| Behavior change | Update existing + add new scenarios |
+| Code deletion | Remove obsolete scenarios |
+
+#### Scenario Format
+
+```markdown
+### Script [N]: [Brief Description]
+
+**Added**: YYYY-MM-DD
+**Corrected**: YYYY-MM-DD (or "N/A")
+**Status**: [ ] Open / [x] Fixed
+
+**Steps**:
+1. [Specific action]
+2. [Specific action]
+
+**Expected**: [Correct behavior]
+**Actual**: [Bug behavior if applicable]
+**Fix Reference**: [commit/task reference]
+
+**Automated Test**: tests/[path]::[test_name]
+```
+
+#### Checklist
+
+- [ ] `docs/MANUAL_TESTING.md` reviewed
+- [ ] Contradicting scenarios updated/deleted
+- [ ] New scenarios added for all changes
+- [ ] Automated tests created for scenarios
+- [ ] Dates and references updated
+
+**DO NOT skip this phase.** Manual testing scenarios prevent regression and document expected behavior.
+
+### 3.3 Manual Testing Gate
 
 **Create testing checklist** at `docs/manual_testing_checklist.md`:
 
