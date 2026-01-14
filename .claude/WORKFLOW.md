@@ -54,12 +54,17 @@ Each phase has mandatory checkpoints that must be satisfied before proceeding.
 
 ### After Completion
 
-1. Verify all steps marked complete in plan
-2. Fill in "Key Discoveries" section
-3. Fill in "Future Improvements" section (minimum 2 items)
-4. Move from `docs/plans/` to `docs/archive/plans/`
-5. Update `docs/planning/DONE.md` with task summary
-6. Delete `/root/.claude/plans/` copy (if exists)
+**Follow the Task Completion Documentation Sequence (Phase 5.1):**
+
+```
+1. EXTRACT    → Improvements from plan → BACKLOG.md / TODO.md
+2. ARCHIVE    → Move plan to docs/archive/plans/
+3. TRANSITION → Move task from TODO.md → DONE.md
+4. COMMIT     → Git commit all documentation changes
+5. MEMORY     → Update knowledge graph
+```
+
+See **Phase 5: COMPLETE** for detailed instructions on each step.
 
 ### Directory Structure
 
@@ -611,17 +616,117 @@ if edge_case:
 
 ## Phase 5: COMPLETE
 
-### 5.1 Final Checklist
+**This phase executes AFTER user approval of manual testing.**
+
+### 5.1 Task Completion Documentation Sequence
+
+**Execute in this exact order:**
+
+```
+1. EXTRACT    → Improvements from plan → BACKLOG.md / TODO.md
+2. ARCHIVE    → Move plan to docs/archive/plans/
+3. TRANSITION → Move task from TODO.md → DONE.md
+4. COMMIT     → Git commit all changes
+5. MEMORY     → Update knowledge graph
+```
+
+#### Step 1: Extract Improvements to BACKLOG.md
+
+**⚠️ REQUIREMENT: Plan MUST have minimum 2 documented improvements before this step.**
+
+If fewer than 2 improvements exist → STOP → Add more improvements to the plan first.
+
+1. **Verify minimum 2 improvements exist** in plan Section 5
+2. **Review all documented improvements**
+3. **Categorize each improvement**:
+   - `ACTIONABLE` → Add to TODO.md with priority
+   - `IDEA` → Add to BACKLOG.md for future consideration
+   - `SKIP` → Document reason in plan, don't add anywhere
+4. **Format for BACKLOG.md**:
+   ```markdown
+   ### [YYYY-MM-DD] From: [task-name]
+   **Origin**: docs/archive/plans/YYYY-MM-DD_task-name.md
+
+   - [ ] [Improvement 1] — [brief rationale]
+   - [ ] [Improvement 2] — [brief rationale]
+   ```
+
+#### Step 2: Archive Completed Plan
+
+1. **Verify completeness**:
+   - [ ] All sections filled
+   - [ ] Status set to "Complete"
+   - [ ] "Key Discoveries" documented
+   - [ ] "Future Improvements" has minimum 2 items
+2. **Move to archive**:
+   ```bash
+   mv docs/plans/YYYY-MM-DD_task-name.md docs/archive/plans/
+   ```
+3. **Clean up**: Delete `/root/.claude/plans/` copy if exists
+
+#### Step 3: Transition Task TODO.md → DONE.md
+
+**In TODO.md**: Remove the task entry completely
+
+**In DONE.md**: Add with format:
+```markdown
+### [YYYY-MM-DD] [Task Title]
+
+**Plan**: [docs/archive/plans/YYYY-MM-DD_task-name.md](docs/archive/plans/YYYY-MM-DD_task-name.md)
+**Summary**: [1-2 sentence description]
+**Key Changes**:
+- [Change 1]
+- [Change 2]
+**Spawned Tasks**: [count] items added to TODO.md/BACKLOG.md
+```
+
+#### Step 4: Commit Documentation Changes
+
+**Single commit for all planning documentation:**
+
+```bash
+git add docs/planning/TODO.md docs/planning/DONE.md docs/planning/BACKLOG.md
+git add docs/archive/plans/YYYY-MM-DD_task-name.md
+git commit -m "docs: Archive completed plan and update planning docs
+
+- Archive: YYYY-MM-DD_task-name.md
+- Move task from TODO.md to DONE.md
+- Add [N] improvements to BACKLOG.md
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
+```
+
+#### Step 5: Update Memory
+
+**Persist learnings to knowledge graph:**
+
+| Discovery Type | Memory Action |
+|----------------|---------------|
+| New decision | `create_entities()` → Decision entity |
+| New pattern | `create_entities()` → Pattern entity |
+| Task completion | `add_observations()` → Update task entity status |
+| Obsolete info | `delete_observations()` or `delete_entities()` |
+
+**Memory checklist:**
+- [ ] Decisions recorded in memory?
+- [ ] New patterns captured?
+- [ ] Task status updated?
+- [ ] Stale observations cleaned?
+- [ ] Relations updated?
+
+### 5.2 Final Verification Checklist
 
 - [ ] All tests passing
 - [ ] Pre-commit hooks passing
 - [ ] User approved manual testing
-- [ ] TODO.md updated
-- [ ] DONE.md updated
-- [ ] Plan document completed
+- [ ] Improvements extracted to BACKLOG.md/TODO.md
+- [ ] Plan archived to `docs/archive/plans/`
+- [ ] Task moved from TODO.md to DONE.md
+- [ ] Documentation commit created
+- [ ] Memory updated with learnings
 - [ ] Code pushed to repository
 
-### 5.2 Git Workflow
+### 5.3 Git Workflow for Feature Commits
 
 ```bash
 # Stage changes
@@ -632,7 +737,9 @@ git commit -m "[type]: [description]
 
 [Body explaining what and why]
 
-Refs: #[issue] or TODO.md X.Y.Z"
+Refs: #[issue] or TODO.md X.Y.Z
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
 
 # Push after user approval
 git push origin [branch]

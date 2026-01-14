@@ -215,9 +215,14 @@ For every task, maintain a running log in the plan document:
 #### [YYYY-MM-DD HH:MM] — PHASE: Complete
 - Final approach: [summary]
 - Tests passing: [yes/no]
-- Documentation updated: [list]
-- **Improvements documented**: [count]
-- **Added to TODO.md**: [list of spawned tasks]
+- User approval: [received/pending]
+
+#### [YYYY-MM-DD HH:MM] — PHASE: Task Completion Documentation
+- **Step 1 EXTRACT**: [N] improvements → BACKLOG.md, [N] → TODO.md
+- **Step 2 ARCHIVE**: Plan moved to docs/archive/plans/
+- **Step 3 TRANSITION**: Task moved TODO.md → DONE.md
+- **Step 4 COMMIT**: Documentation commit hash: [hash]
+- **Step 5 MEMORY**: [entities created/updated/deleted]
 ```
 
 **CRITICAL**: The "Sub-Item Complete" log entry is NOT optional. It MUST be written immediately after each sub-item.
@@ -246,6 +251,109 @@ Document in plan file Section 5:
 - Technical debt identified
 - Performance opportunities
 - Actionable items → add to TODO.md
+
+---
+
+## ⚠️ Task Completion Documentation (Mandatory Phase)
+
+**This phase MUST be executed after all testing (automated + manual) is complete and user has approved.**
+
+### Sequence (Execute in Order)
+
+```
+1. EXTRACT    → Improvements from plan → BACKLOG.md
+2. ARCHIVE    → Move plan to docs/archive/plans/
+3. TRANSITION → Move task from TODO.md → DONE.md
+4. COMMIT     → Git commit all changes
+5. MEMORY     → Update knowledge graph
+```
+
+### Step 1: Extract Improvements to BACKLOG.md
+
+**⚠️ REQUIREMENT: Plan MUST have minimum 2 documented improvements before this step.**
+
+If fewer than 2 improvements exist → STOP → Add more improvements to the plan first.
+
+From the completed plan's "Future Improvements" section:
+
+1. **Verify minimum 2 improvements exist** in plan Section 5
+2. **Review all documented improvements**
+3. **Categorize each improvement**:
+   - `ACTIONABLE` → Add to TODO.md with priority
+   - `IDEA` → Add to BACKLOG.md for future consideration
+   - `SKIP` → Not worth pursuing (document why in plan)
+4. **Format for BACKLOG.md**:
+
+```markdown
+### [YYYY-MM-DD] From: [task-name]
+**Origin**: docs/archive/plans/YYYY-MM-DD_task-name.md
+
+- [ ] [Improvement 1] — [brief rationale]
+- [ ] [Improvement 2] — [brief rationale]
+```
+
+### Step 2: Archive Completed Plan
+
+1. **Verify plan is complete**:
+   - [ ] All sections filled
+   - [ ] Status set to "Complete"
+   - [ ] "Key Discoveries" documented
+   - [ ] "Future Improvements" documented (minimum 2)
+2. **Move plan file**:
+   ```bash
+   mv docs/plans/YYYY-MM-DD_task-name.md docs/archive/plans/
+   ```
+3. **Delete duplicate** (if exists in `/root/.claude/plans/`)
+
+### Step 3: Transition Task from TODO.md → DONE.md
+
+1. **In TODO.md**: Remove the task entry completely
+2. **In DONE.md**: Add task with completion details:
+
+```markdown
+### [YYYY-MM-DD] [Task Title]
+
+**Plan**: [docs/archive/plans/YYYY-MM-DD_task-name.md](docs/archive/plans/YYYY-MM-DD_task-name.md)
+**Summary**: [1-2 sentence description of what was accomplished]
+**Key Changes**:
+- [Change 1]
+- [Change 2]
+**Spawned Tasks**: [count] items added to TODO.md/BACKLOG.md
+```
+
+### Step 4: Commit Changes
+
+**Single commit for documentation cleanup:**
+
+```bash
+git add docs/planning/TODO.md docs/planning/DONE.md docs/planning/BACKLOG.md
+git add docs/archive/plans/YYYY-MM-DD_task-name.md
+git commit -m "docs: Archive completed plan and update planning docs
+
+- Archive: YYYY-MM-DD_task-name.md
+- Move task from TODO.md to DONE.md
+- Add [N] improvements to BACKLOG.md
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
+```
+
+### Step 5: Update Memory
+
+**Persist learnings to knowledge graph:**
+
+| Discovery Type | Memory Action |
+|----------------|---------------|
+| New decision | `create_entities()` → Decision entity |
+| New pattern | `create_entities()` → Pattern entity |
+| Task completion | `add_observations()` → Update task entity |
+| Obsolete info found | `delete_observations()` or `delete_entities()` |
+
+**Memory update checklist:**
+- [ ] Significant decisions recorded?
+- [ ] New patterns captured?
+- [ ] Task status updated in memory?
+- [ ] Outdated observations cleaned up?
+- [ ] Relations created/updated?
 
 ---
 
@@ -537,10 +645,14 @@ Create language policy when:
    - Create automated tests for scenarios
 4. ✅ Manual testing checklist created
 5. ✅ Wait for user approval before push
-6. ✅ **Document improvements** (minimum 2 per task)
-7. ✅ **Add actionable improvements to TODO.md**
-8. ✅ Update all documentation
-9. ✅ Move task from TODO.md to DONE.md
+
+### After User Approval (Task Completion Documentation Phase)
+
+6. ✅ **Extract improvements** from plan → BACKLOG.md (ideas) / TODO.md (actionable)
+7. ✅ **Archive plan** → Move to `docs/archive/plans/`
+8. ✅ **Transition task** → Remove from TODO.md, add to DONE.md
+9. ✅ **Commit documentation** → Single commit for all planning docs
+10. ✅ **Update memory** → Persist decisions, patterns, task status to knowledge graph
 
 ---
 
